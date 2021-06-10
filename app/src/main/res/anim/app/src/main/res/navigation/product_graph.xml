@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/product_graph"
+    app:startDestination="@id/productFragment">
+
+    <fragment
+        android:id="@+id/cardFragment"
+        android:name="com.example.navigationcomponentsapp.CardFragment"
+        android:label="fragment_cart"
+        tools:layout="@layout/fragment_card">
+        <deepLink
+            android:id="@+id/deepLink"
+            app:uri="cursoandroid://card" />
+    </fragment>
+    <fragment
+        android:id="@+id/productFragment"
+        android:name="com.example.navigationcomponentsapp.ProductFragment"
+        android:label="fragment_product"
+        tools:layout="@layout/fragment_product" />
+    <deepLink
+        android:id="@+id/deepLink2"
+        app:uri="crusoandroid://card" />
+</navigation>
