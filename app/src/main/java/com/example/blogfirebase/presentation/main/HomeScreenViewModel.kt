@@ -3,18 +3,18 @@ package com.example.blogfirebase.presentation.main
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.liveData
-import com.example.blogfirebase.core.Resource
+import com.example.blogfirebase.core.Result
 import com.example.blogfirebase.domain.home.HomeScreenRepo
 import kotlinx.coroutines.Dispatchers
 
 class HomeScreenViewModel(private val repo: HomeScreenRepo): ViewModel() {
 
     fun fetchLatestPosts() = liveData(Dispatchers.IO) {
-        emit(Resource.Loading())
+        emit(Result.Loading())
         try{
             emit(repo.getLatestPost())
         }catch (e: Exception){
-            emit(Resource.Failure(e))
+            emit(Result.Failure(e))
         }
 
     }

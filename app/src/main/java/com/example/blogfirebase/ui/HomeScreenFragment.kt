@@ -3,12 +3,11 @@ package com.example.blogfirebase.ui
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import com.example.blogfirebase.core.Result
 import com.example.blogfirebase.R
-import com.example.blogfirebase.core.Resource
 import com.example.blogfirebase.data.remote.home.HomeScreenDataSource
 import com.example.blogfirebase.databinding.FragmentHomeScreenBinding
 import com.example.blogfirebase.domain.home.HomeScreenRepoImpl
@@ -32,15 +31,15 @@ class HomeScreenFragment : Fragment(R.layout.fragment_home_screen) {
 
         viewModel.fetchLatestPosts().observe(viewLifecycleOwner, Observer {result ->
             when(result){
-                is Resource.Loading ->{
+                is  Result.Loading ->{
                     binding.progressBar.visibility = View.VISIBLE
 
                 }
-                is Resource.Success -> {
+                is  Result.Success -> {
                     binding.progressBar.visibility = View.GONE
                     binding.rvHome.adapter = HomeScreenAdapter(result.data)
             }
-                is Resource.Failure -> {
+                is  Result.Failure -> {
                     binding.progressBar.visibility = View.GONE
                     Toast.makeText(requireContext(), "Ocurrio un error: ${result.exception}", Toast.LENGTH_SHORT).show()
                 }
